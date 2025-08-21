@@ -1,0 +1,33 @@
+version:  "3.8"
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo-db
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: mern-todo
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - mern-network
+  
+  backend:
+    build: .
+    container_name: backend-app
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    depends_on:
+      - mongo
+    networks:
+      - mern-network
+
+volumes:
+  mongo-data:
+
+networks:
+  mern-network:
+    driver: bridge
