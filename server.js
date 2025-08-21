@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(cors())
 
 //db config
-mongoose.connect('mongodb://127.0.0.1:27017/mern-todo', {
+mongoose.connect('mongodb+srv://rakshitchauhan435:rakshit435@lms.k2dbp.mongodb.net/', {
     useNewUrlParser: true,
 }, (err) => {
     if (err) {
